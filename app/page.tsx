@@ -68,11 +68,17 @@ export default function HomePage() {
       {/* ambient glow orbs */}
       <div
         className="pointer-events-none absolute top-[-120px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full opacity-20"
-        style={{ background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)' }}
+        style={{
+          background:
+            "radial-gradient(circle, var(--primary) 0%, transparent 70%)",
+        }}
       />
       <div
         className="pointer-events-none absolute bottom-[-80px] right-[-80px] w-[300px] h-[300px] rounded-full opacity-10"
-        style={{ background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)' }}
+        style={{
+          background:
+            "radial-gradient(circle, var(--accent) 0%, transparent 70%)",
+        }}
       />
 
       <div className="w-full max-w-sm flex flex-col gap-6 relative z-10">
@@ -81,54 +87,94 @@ export default function HomePage() {
           <div className="flex items-center justify-center gap-3 mb-3">
             <div
               className="w-12 h-12 rounded-2xl glow-primary flex items-center justify-center"
-              style={{ background: 'var(--primary)' }}
+              style={{ background: "var(--primary)" }}
             >
-              <Eye className="w-6 h-6" style={{ color: 'var(--primary-foreground)' }} />
+              <Eye
+                className="w-6 h-6"
+                style={{ color: "var(--primary-foreground)" }}
+              />
             </div>
           </div>
-          <h1 className="text-5xl font-black tracking-tight text-glow-primary" style={{ color: 'var(--primary)' }}>
+          <h1
+            className="text-5xl font-black tracking-tight text-glow-primary"
+            style={{ color: "var(--primary)" }}
+          >
             IMPOSTER
           </h1>
-          <p className="text-muted-foreground mt-1.5 text-sm tracking-wide">Social deduction party game</p>
+          <p className="text-muted-foreground mt-1.5 text-sm tracking-wide">
+            Social deduction party game
+          </p>
         </div>
 
-        {mode === 'home' && (
-          <div className="flex flex-col gap-3 fade-in-up" style={{ animationDelay: '0.1s' }}>
+        {mode === "home" && (
+          <div
+            className="flex flex-col gap-3 fade-in-up"
+            style={{ animationDelay: "0.1s" }}
+          >
             <button
               className="w-full rounded-xl py-4 font-bold text-base tracking-wide glow-primary transition-all active:scale-95"
-              style={{ background: 'var(--primary)', color: 'var(--primary-foreground)' }}
-              onClick={() => goMode('create')}
+              style={{
+                background: "var(--primary)",
+                color: "var(--primary-foreground)",
+              }}
+              onClick={() => goMode("create")}
             >
               Create Room
             </button>
             <button
               className="w-full rounded-xl py-4 font-bold text-base tracking-wide glass transition-all active:scale-95"
-              onClick={() => goMode('join')}
+              onClick={() => goMode("join")}
             >
               Join Room
             </button>
 
             <div className="mt-4 glass rounded-xl p-4 flex justify-around text-center">
               {[
-                { icon: <Users className="w-4 h-4" />, label: '3–10', sub: 'Players' },
-                { icon: <Shuffle className="w-4 h-4" />, label: '8', sub: 'Categories' },
-                { icon: <Eye className="w-4 h-4" />, label: '1–3', sub: 'Imposters' },
+                {
+                  icon: <Users className="w-4 h-4" />,
+                  label: "3–10",
+                  sub: "Players",
+                },
+                {
+                  icon: <Shuffle className="w-4 h-4" />,
+                  label: "8",
+                  sub: "Categories",
+                },
+                {
+                  icon: <Eye className="w-4 h-4" />,
+                  label: "1–3",
+                  sub: "Imposters",
+                },
               ].map((item) => (
-                <div key={item.sub} className="flex flex-col items-center gap-1">
+                <div
+                  key={item.sub}
+                  className="flex flex-col items-center gap-1"
+                >
                   <div className="text-muted-foreground">{item.icon}</div>
-                  <p className="font-bold text-sm" style={{ color: 'var(--primary)' }}>{item.label}</p>
+                  <p
+                    className="font-bold text-sm"
+                    style={{ color: "var(--primary)" }}
+                  >
+                    {item.label}
+                  </p>
                   <p className="text-xs text-muted-foreground">{item.sub}</p>
                 </div>
               ))}
             </div>
+            <p
+              className=" text-xs text-center"
+              style={{ color: "var(--primary)" }}
+            >
+              Developed by Ajay 💚
+            </p>
           </div>
         )}
 
-        {mode === 'create' && (
+        {mode === "create" && (
           <div className="glass rounded-2xl p-5 flex flex-col gap-5 fade-in-up">
             <div className="flex items-center gap-2">
               <button
-                onClick={() => goMode('home')}
+                onClick={() => goMode("home")}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -137,7 +183,9 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-muted-foreground uppercase tracking-wider">Your Name</label>
+              <label className="text-xs text-muted-foreground uppercase tracking-wider">
+                Your Name
+              </label>
               <Input
                 placeholder="Enter your name"
                 value={name}
@@ -148,16 +196,21 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs text-muted-foreground uppercase tracking-wider">Category</label>
+              <label className="text-xs text-muted-foreground uppercase tracking-wider">
+                Category
+              </label>
               <div className="grid grid-cols-2 gap-2">
                 {WORD_CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}
-                    onClick={() => { setCategory(cat.id); playSound('tick') }}
+                    onClick={() => {
+                      setCategory(cat.id);
+                      playSound("tick");
+                    }}
                     className={`rounded-xl px-3 py-2.5 text-sm font-medium border transition-all active:scale-95 ${
                       category === cat.id
-                        ? 'border-primary text-primary bg-primary/10 glow-primary'
-                        : 'border-border text-muted-foreground hover:border-primary/40 bg-secondary'
+                        ? "border-primary text-primary bg-primary/10 glow-primary"
+                        : "border-border text-muted-foreground hover:border-primary/40 bg-secondary"
                     }`}
                   >
                     {cat.label}
@@ -167,19 +220,29 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-muted-foreground uppercase tracking-wider">Imposters</label>
+              <label className="text-xs text-muted-foreground uppercase tracking-wider">
+                Imposters
+              </label>
               <div className="flex items-center gap-2 glass rounded-xl px-3 py-2">
                 <button
                   className="text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors"
-                  onClick={() => { setImposters((v) => Math.max(1, v - 1)); playSound('tick') }}
+                  onClick={() => {
+                    setImposters((v) => Math.max(1, v - 1));
+                    playSound("tick");
+                  }}
                   disabled={imposters <= 1}
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="flex-1 text-center font-bold text-lg">{imposters}</span>
+                <span className="flex-1 text-center font-bold text-lg">
+                  {imposters}
+                </span>
                 <button
                   className="text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors"
-                  onClick={() => { setImposters((v) => Math.min(3, v + 1)); playSound('tick') }}
+                  onClick={() => {
+                    setImposters((v) => Math.min(3, v + 1));
+                    playSound("tick");
+                  }}
                   disabled={imposters >= 3}
                 >
                   <Plus className="w-4 h-4" />
@@ -187,24 +250,29 @@ export default function HomePage() {
               </div>
             </div>
 
-            {error && <p className="text-destructive text-sm text-center">{error}</p>}
+            {error && (
+              <p className="text-destructive text-sm text-center">{error}</p>
+            )}
 
             <button
               className="w-full rounded-xl py-3.5 font-bold text-base glow-primary transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ background: 'var(--primary)', color: 'var(--primary-foreground)' }}
+              style={{
+                background: "var(--primary)",
+                color: "var(--primary-foreground)",
+              }}
               onClick={handleCreate}
               disabled={loading}
             >
-              {loading ? 'Creating room...' : 'Create Room'}
+              {loading ? "Creating room..." : "Create Room"}
             </button>
           </div>
         )}
 
-        {mode === 'join' && (
+        {mode === "join" && (
           <div className="glass rounded-2xl p-5 flex flex-col gap-5 fade-in-up">
             <div className="flex items-center gap-2">
               <button
-                onClick={() => goMode('home')}
+                onClick={() => goMode("home")}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -213,7 +281,9 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-muted-foreground uppercase tracking-wider">Your Name</label>
+              <label className="text-xs text-muted-foreground uppercase tracking-wider">
+                Your Name
+              </label>
               <Input
                 placeholder="Enter your name"
                 value={name}
@@ -224,7 +294,9 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-muted-foreground uppercase tracking-wider">Room Code</label>
+              <label className="text-xs text-muted-foreground uppercase tracking-wider">
+                Room Code
+              </label>
               <Input
                 placeholder="ABC123"
                 value={code}
@@ -234,19 +306,24 @@ export default function HomePage() {
               />
             </div>
 
-            {error && <p className="text-destructive text-sm text-center">{error}</p>}
+            {error && (
+              <p className="text-destructive text-sm text-center">{error}</p>
+            )}
 
             <button
               className="w-full rounded-xl py-3.5 font-bold text-base glow-primary transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ background: 'var(--primary)', color: 'var(--primary-foreground)' }}
+              style={{
+                background: "var(--primary)",
+                color: "var(--primary-foreground)",
+              }}
               onClick={handleJoin}
               disabled={loading}
             >
-              {loading ? 'Joining...' : 'Join Room'}
+              {loading ? "Joining..." : "Join Room"}
             </button>
           </div>
         )}
       </div>
     </main>
-  )
+  );
 }
