@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.1 0.02 255);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.15 0.025 255);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.15 0.025 255);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(76.548% 0.16132 164.143);
+  --primary-foreground: oklch(0.08 0 0);
+  --secondary: oklch(0.2 0.03 255);
+  --secondary-foreground: oklch(0.85 0 0);
+  --muted: oklch(0.2 0.03 255);
+  --muted-foreground: oklch(0.55 0.025 255);
+  --accent: oklch(0.68 0.18 200);
+  --accent-foreground: oklch(0.08 0 0);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.97 0 0);
+  --border: oklch(0.24 0.03 255);
+  --input: oklch(0.18 0.03 255);
+  --ring: oklch(0.72 0.2 35);
+  --radius: 0.875rem;
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100dvh;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  }
+  .glow-primary {
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--primary) 35%, transparent),
+      0 0 50px color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+  .glow-accent {
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--accent) 35%, transparent),
+      0 0 50px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+  .glow-destructive {
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--destructive) 40%, transparent),
+      0 0 50px color-mix(in srgb, var(--destructive) 15%, transparent);
+  }
+  .text-glow-primary {
+    text-shadow: 0 0 24px color-mix(in srgb, var(--primary) 70%, transparent);
+  }
+  .text-glow-accent {
+    text-shadow: 0 0 24px color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(
+        color-mix(in srgb, var(--border) 40%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--border) 40%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 36px 36px;
+  }
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 50%, transparent);
+    }
+    70% {
+      box-shadow: 0 0 0 12px color-mix(in srgb, var(--primary) 0%, transparent);
+    }
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 0%, transparent);
+    }
+  }
+  .pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  .float {
+    animation: float-y 3s ease-in-out infinite;
+  }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-in-up {
+    animation: fade-in-up 0.35s ease both;
+  }
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.88);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .scale-in {
+    animation: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+}
